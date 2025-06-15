@@ -42,7 +42,8 @@
             "name": "Linux",
             "includePath": [
                 "${workspaceFolder}/raylib-master/src/",
-                "${workspaceFolder}/game/**"
+                "${workspaceFolder}/game/**",
+                "${workspaceFolder}/raygui"
             ],
             "defines": [
                 "_DEBUG",
@@ -55,7 +56,6 @@
             "cStandard": "c11",
             "cppStandard": "c++14",
             "intelliSenseMode": "clang-x64"
-
         }
     ],
     "version": 4
