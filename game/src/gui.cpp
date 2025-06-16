@@ -81,6 +81,6 @@ void DrawGameOver()
     }
     if (GuiButton((Rectangle){buttonX, startY + 2 * (ButtonHeight + 10), ButtonWidth, ButtonHeight}, "Exit Game"))
     {
-        ExitGame();
+        ExitGameLogic();
     }
 }

@@ -19,6 +19,6 @@ extern GameState g_gameState;
 void InitGameLogic();
 void StartGameLogic();
 void EndGameLogic();
-void ExitGame();
+void ExitGameLogic();
 
 #endif // LOGIC_H
