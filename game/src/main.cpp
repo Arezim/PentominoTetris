@@ -1,43 +1,23 @@
-#include "raylib.h"
-
-#define RAYGUI_IMPLEMENTATION
-#include "raygui.h"
-
+#include "initializer.h"
 #include "logic.h"
 #include "gui.h"
+
+#include "raylib.h"
 
 //---------------------------------
 // Global Variables
 //---------------------------------
 
-static const int InitialWidth = 1920*0.5;
-static const int InitialHeight = 1080*0.5;
-
-void InitGameWindow()
+bool exitWindow()
 {
-    SetConfigFlags(FLAG_VSYNC_HINT | FLAG_WINDOW_RESIZABLE);
-    InitWindow(InitialWidth, InitialHeight, "Pentomino Tetris");
-    SetTargetFPS(144);
-    // load resources
-}
-
-void GameCleanup()
-{
-    // unload resources
-
-    CloseWindow();
-}
-
-bool GameUpdate()
-{
-    return true;
+    return WindowShouldClose() || g_gameState == GAME_STATE_EXIT;
 }
 
 int main()
 {
     InitGameWindow();
     InitGameLogic();
-    while (!WindowShouldClose())
+    while (!exitWindow())
     {
         DrawGUI();
     }

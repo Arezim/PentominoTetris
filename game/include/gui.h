@@ -8,5 +8,6 @@ static const float ButtonHeight = 100.0f;
 void DrawGUI();
 void DrawMainMenu();
 void DrawGame();
+void DrawGameOver();
 
 #endif // GUI_H

@@ -22,3 +22,9 @@ void EndGameLogic()
 {
     g_gameState = GAME_STATE_GAME_OVER;
 }
+
+// set the game state to exit
+void ExitGame()
+{
+    g_gameState = GAME_STATE_EXIT;
+}
