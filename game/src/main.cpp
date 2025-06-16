@@ -3,7 +3,8 @@
 #define RAYGUI_IMPLEMENTATION
 #include "raygui.h"
 
-#include "raymath.h"
+#include "logic.h"
+#include "gui.h"
 
 //---------------------------------
 // Global Variables
@@ -12,11 +13,7 @@
 static const int InitialWidth = 1920*0.5;
 static const int InitialHeight = 1080*0.5;
 
-// Button dimensions
-static const float ButtonWidth = 300.0f;
-static const float ButtonHeight = 100.0f;
-
-void GameInit()
+void InitGameWindow()
 {
     SetConfigFlags(FLAG_VSYNC_HINT | FLAG_WINDOW_RESIZABLE);
     InitWindow(InitialWidth, InitialHeight, "Pentomino Tetris");
@@ -36,35 +33,13 @@ bool GameUpdate()
     return true;
 }
 
-void GameDraw()
-{
-    BeginDrawing();
-
-    GuiSetStyle(DEFAULT, TEXT_SIZE, 30);
-
-    ClearBackground(DARKGRAY);
-    // Display the button
-
-    // center the button
-    float buttonX = (GetScreenWidth() - ButtonWidth) / 2.0f;
-    float buttonY = (GetScreenHeight() - ButtonHeight) / 2.0f;
-    
-    if(GuiButton((Rectangle){ buttonX, buttonY, ButtonWidth, ButtonHeight }, "Start Game"))
-    {
-        // Start the game logic here
-    }
-    EndDrawing();
-}
-
 int main()
 {
-    GameInit();
-    
+    InitGameWindow();
+    InitGameLogic();
     while (!WindowShouldClose())
     {
-        if (!GameUpdate())
-            break;
-        GameDraw();
+        DrawGUI();
     }
     GameCleanup();
 
