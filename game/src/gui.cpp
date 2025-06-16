@@ -4,6 +4,10 @@
 #include "logic.h"
 #include "initializer.h"
 
+// "Start Game" Button dimensions
+static const float ButtonWidth = 300.0f;
+static const float ButtonHeight = 100.0f;
+
 void DrawGUI()
 {
     BeginDrawing();
@@ -15,7 +19,7 @@ void DrawGUI()
         break;
 
     case GAME_STATE_PLAYING:
-        DrawGameOver();
+        DrawGame();
         break;
 
     case GAME_STATE_PAUSED:
@@ -49,6 +53,12 @@ void DrawGame()
 {
     ClearBackground(RAYWHITE);
     GuiLabel((Rectangle){10, 10, 200, 30}, TextFormat("Score: %d", g_score));
+
+    GuiSetStyle(DEFAULT, TEXT_SIZE, 30);
+    if(GuiButton((Rectangle){GetScreenWidth() - 210, 10, 200, 80}, "Finish Game"))
+    {
+        g_gameState = GAME_STATE_GAME_OVER;
+    }
 }
 
 void DrawGameOver()
