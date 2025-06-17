@@ -156,11 +156,11 @@ void DrawSmallBoard()
     float startX = (GetScreenWidth() * 3.0f - SmallBoardWidth * CellWidth ) / 4.0f;
     float startY = (GetScreenHeight() - SmallBoardHeight / 2.0f) * 1.0f / 4.0f;
 
-    for (int width = 0; width < SmallBoardWidth; width++)
+    for (int row = 0; row < SmallBoardWidth; row++)
     {
-        for (int height = 0; height < SmallBoardHeight; height++)
+        for (int col = 0; col < SmallBoardHeight; col++)
         {
-            Rectangle cell = {startX + width * CellWidth - width, startY + height * CellHeight - height, CellWidth, CellHeight};
+            Rectangle cell = {startX + row * CellWidth - row, startY + col * CellHeight - col, CellWidth, CellHeight};
             DrawRectangleRec(cell, LIGHTGRAY);
             // Draw a border around each cell
             DrawRectangleLinesEx(cell, 1.0f, DARKGRAY);
