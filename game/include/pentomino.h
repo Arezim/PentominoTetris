@@ -35,7 +35,71 @@ static const std::map<PentominoType, Color> colorMap = {
     {PentominoType::F, DARKBLUE},
     {PentominoType::P, DARKGREEN},
     {PentominoType::NONE, LIGHTGRAY} // Color for empty cells
-};  
+};
+
+static const std::map<PentominoType, std::vector<std::vector<PentominoType>>> pentominoShapes = {
+    {PentominoType::I, {
+        {PentominoType::I, PentominoType::I, PentominoType::I, PentominoType::I, PentominoType::I}
+    }},
+    {PentominoType::X, {
+        {PentominoType::X, PentominoType::NONE, PentominoType::X},
+        {PentominoType::NONE, PentominoType::X, PentominoType::NONE},
+        {PentominoType::X, PentominoType::NONE, PentominoType::X}
+    }},
+    {PentominoType::Z, {
+        {PentominoType::Z, PentominoType::Z, PentominoType::Z},
+        {PentominoType::NONE, PentominoType::Z, PentominoType::NONE},
+        {PentominoType::Z, PentominoType::Z, PentominoType::Z}
+    }},
+    {PentominoType::V, {
+        {PentominoType::V, PentominoType::V, PentominoType::V},
+        {PentominoType::V, PentominoType::NONE, PentominoType::NONE},
+        {PentominoType::V, PentominoType::NONE, PentominoType::NONE}
+    }},
+    {PentominoType::T, {
+        {PentominoType::T, PentominoType::T, PentominoType::T},
+        {PentominoType::NONE, PentominoType::T, PentominoType::NONE},
+        {PentominoType::NONE, PentominoType::T, PentominoType::NONE}
+    }},
+    {PentominoType::W, {
+        {PentominoType::NONE, PentominoType::NONE, PentominoType::W},
+        {PentominoType::NONE, PentominoType::W, PentominoType::W},
+        {PentominoType::W, PentominoType::W, PentominoType::NONE}
+    }},
+    {PentominoType::U, {
+        {PentominoType::U, PentominoType::U},
+        {PentominoType::U, PentominoType::NONE},
+        {PentominoType::U, PentominoType::U}
+    }},
+    {PentominoType::L, {
+        {PentominoType::L, PentominoType::NONE},
+        {PentominoType::L, PentominoType::NONE},
+        {PentominoType::L, PentominoType::NONE},
+        {PentominoType::L, PentominoType::L}
+    }},
+    {PentominoType::N, {
+        {PentominoType::NONE, PentominoType::N},
+        {PentominoType::N, PentominoType::N},
+        {PentominoType::N, PentominoType::NONE},
+        {PentominoType::N, PentominoType::NONE}
+    }},
+    {PentominoType::Y, {
+        {PentominoType::Y, PentominoType::NONE},
+        {PentominoType::Y, PentominoType::Y},
+        {PentominoType::Y, PentominoType::NONE},
+        {PentominoType::Y, PentominoType::NONE}
+    }},
+    {PentominoType::F, {
+        {PentominoType::NONE, PentominoType::F, PentominoType::F},
+        {PentominoType::F, PentominoType::F, PentominoType::NONE},
+        {PentominoType::NONE, PentominoType::F, PentominoType::NONE}
+    }},
+    {PentominoType::P, {
+        {PentominoType::P, PentominoType::P},
+        {PentominoType::P, PentominoType::P},
+        {PentominoType::P, PentominoType::NONE}
+    }}
+};
 
 class Pentomino {
 private:
