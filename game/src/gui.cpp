@@ -1,8 +1,10 @@
 #include "raylib.h"
 #include "raygui.h"
+
 #include "gui.h"
 #include "logic.h"
 #include "initializer.h"
+#include "pentomino.h"
 
 // "Start Game" Button dimensions
 static const float ButtonWidth = 300.0f;
@@ -85,6 +87,8 @@ void DrawGameOver()
 
 void DrawGame()
 {
+
+    // Draw game GUI - game score and finish button
     ClearBackground(RAYWHITE);
     GuiLabel((Rectangle){10, 10, 200, 30}, TextFormat("Score: %d", g_score));
 
@@ -107,6 +111,9 @@ static const int BoardHeight = 15;
 static const float CellWidth = 40.0f;
 static const float CellHeight = 40.0f;
 
+// 2D array representing the game board
+static std::vector<std::vector<PentominoType>> gameBoard(BoardWidth, std::vector<PentominoType>(BoardHeight, PentominoType::NONE));
+
 // The actual game board
 void DrawBoard()
 {
@@ -119,14 +126,18 @@ void DrawBoard()
     float startY = (GetScreenHeight() - totalBoardHeight) / 2.0f;
 
     // Iterate through the board dimensions
-    for (int width = 0; width < BoardWidth; width++)
+    for (int row = 0; row < BoardWidth; row++)
     {
-        for (int height = 0; height < BoardHeight; height++)
+        for (int col = 0; col < BoardHeight; col++)
         {
             // Draw a rectangle for each cell in the board
             // I substract width from (width * CellWidth) and height from (height * CellHeight), because rectangle outline is drawn inside the rectangle. This small overlap ensures that the cells's outlines are not doubled.
-            Rectangle cell = {startX + width * CellWidth - width, startY + height * CellHeight - height, CellWidth, CellHeight};
-            DrawRectangleRec(cell, LIGHTGRAY);
+            Rectangle cell = {startX + row * CellWidth - row, startY + col * CellHeight - col, CellWidth, CellHeight};
+            
+            // Get the color for the current cell based on its type
+            Color cellColor = Pentomino::getColor(gameBoard[row][col]);
+
+            DrawRectangleRec(cell, cellColor);
             // Draw a border around each cell
             DrawRectangleLinesEx(cell, 1.0f, DARKGRAY);
         }
@@ -156,6 +167,4 @@ void DrawSmallBoard()
         }
         
     }
-        
-
 }
