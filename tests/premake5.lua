@@ -29,14 +29,18 @@ project (workspaceName .. "_Tests")
 
     vpaths 
     {
-        ["Header Files/*"] = { "include/**.h",  "include/**.hpp", "src/**.h", "src/**.hpp", "**.h", "**.hpp"},
-        ["Source Files/*"] = {"src/**.c", "src/**.cpp","**.c", "**.cpp"},
+        ["Header Files/*"] = { "include/**.h",  "include/**.hpp", "src/**.h", "src/**.hpp", "**.h", "**.hpp", "../game/include/**.h"},
+        ["Source Files/*"] = {"src/**.c", "src/**.cpp","**.c", "**.cpp", "../game/src/pentomino.cpp"},
     }
     files {"**.c", "**.cpp", "**.h", "**.hpp"}
+    
+    files {"../game/src/pentomino.cpp"}
 
     includedirs { "./" }
     includedirs { "src" }
     includedirs { "include" }
+    
+    includedirs { "../game/include" }
     
     link_raylib()
     link_to("raygui")
