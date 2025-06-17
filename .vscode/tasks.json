@@ -65,6 +65,33 @@
                 "command": "./premake5.osx"
             },
             "group": "build"
+        },
+        {
+            "label": "build tests",
+            "type": "process",
+            "command": "make",
+            "windows": {
+                "command": "mingw32-make.exe",
+                "args": [
+                    "SHELL=cmd",
+                    "PentominoTetris_Tests"
+                ],
+            },
+            "linux": {
+                "args": [
+                    "PentominoTetris_Tests"
+                ],
+            },
+            "osx": {
+                "args": [
+                    "PentominoTetris_Tests"
+                ],
+            },
+            "group": "build",
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "dependsOn":["UpdateMake"]
         }
     ]
 }

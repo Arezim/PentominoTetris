@@ -58,6 +58,36 @@
               "miDebuggerPath": "/usr/bin/gdb"
             },
             "preLaunchTask": "build release",
+          },
+          {
+            "name": "Test",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/bin/Tests/${workspaceFolderBasename}_Tests.exe",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+              {
+                "description": "Enable pretty-printing for gdb",
+                "text": "-enable-pretty-printing",
+                "ignoreFailures": false
+              }
+            ],
+            "windows": {
+              "miDebuggerPath": "gdb.exe",
+            },
+            "osx": {
+              "MIMode": "lldb"
+            },
+            "linux": {
+              "program": "${workspaceFolder}/bin/Tests/${workspaceFolderBasename}_Tests",
+              "miDebuggerPath": "/usr/bin/gdb",
+            },
+            "preLaunchTask": "build tests"
           }
         ]
       }
