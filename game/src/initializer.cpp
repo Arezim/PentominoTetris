@@ -4,8 +4,8 @@
 #define RAYGUI_IMPLEMENTATION
 #include "raygui.h"
 
-static const int InitialWidth = 1920*0.5;
-static const int InitialHeight = 1080*0.5;
+static const int InitialWidth = 1920*0.6;
+static const int InitialHeight = 1080*0.6;
 
 void InitGameWindow()
 {

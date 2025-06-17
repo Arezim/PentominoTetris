@@ -49,18 +49,6 @@ void DrawMainMenu()
     }
 }
 
-void DrawGame()
-{
-    ClearBackground(RAYWHITE);
-    GuiLabel((Rectangle){10, 10, 200, 30}, TextFormat("Score: %d", g_score));
-
-    GuiSetStyle(DEFAULT, TEXT_SIZE, 30);
-    if(GuiButton((Rectangle){GetScreenWidth() - 210, 10, 200, 80}, "Finish Game"))
-    {
-        g_gameState = GAME_STATE_GAME_OVER;
-    }
-}
-
 void DrawGameOver()
 {
     ClearBackground(DARKGRAY);
@@ -93,4 +81,81 @@ void DrawGameOver()
     {
         ExitGameLogic();
     }
+}
+
+void DrawGame()
+{
+    ClearBackground(RAYWHITE);
+    GuiLabel((Rectangle){10, 10, 200, 30}, TextFormat("Score: %d", g_score));
+
+    GuiSetStyle(DEFAULT, TEXT_SIZE, 30);
+    if (GuiButton((Rectangle){GetScreenWidth() - 210, 10, 200, 80}, "Finish Game"))
+    {
+        g_gameState = GAME_STATE_GAME_OVER;
+    }
+
+    // Draw the actual game board
+    DrawBoard();
+    DrawSmallBoard();
+}
+
+// Board dimensions expressed in terms of cells
+static const int BoardWidth = 5;
+static const int BoardHeight = 15;
+
+// Cell dimensions in pixels
+static const float CellWidth = 40.0f;
+static const float CellHeight = 40.0f;
+
+// The actual game board
+void DrawBoard()
+{
+    // Calculate total board dimensions
+    float totalBoardWidth = BoardWidth * CellWidth - BoardWidth;
+    float totalBoardHeight = BoardHeight * CellHeight - BoardHeight;
+
+    // Calculate starting position to center the board
+    float startX = (GetScreenWidth() - totalBoardWidth) / 2.0f;
+    float startY = (GetScreenHeight() - totalBoardHeight) / 2.0f;
+
+    // Iterate through the board dimensions
+    for (int width = 0; width < BoardWidth; width++)
+    {
+        for (int height = 0; height < BoardHeight; height++)
+        {
+            // Draw a rectangle for each cell in the board
+            // I substract width from (width * CellWidth) and height from (height * CellHeight), because rectangle outline is drawn inside the rectangle. This small overlap ensures that the cells's outlines are not doubled.
+            Rectangle cell = {startX + width * CellWidth - width, startY + height * CellHeight - height, CellWidth, CellHeight};
+            DrawRectangleRec(cell, LIGHTGRAY);
+            // Draw a border around each cell
+            DrawRectangleLinesEx(cell, 1.0f, DARKGRAY);
+        }
+    }
+}
+
+static const int SmallBoardWidth = 5;
+static const int SmallBoardHeight = 5;
+
+// This board displays the next pentomino piece
+void DrawSmallBoard()
+{
+    float totalBoardWidth = SmallBoardWidth * CellWidth - SmallBoardWidth;
+    float totalBoardHeight = SmallBoardHeight * CellHeight - SmallBoardHeight;
+
+    float startX = (GetScreenWidth() * 3.0f - SmallBoardWidth * CellWidth ) / 4.0f;
+    float startY = (GetScreenHeight() - SmallBoardHeight / 2.0f) * 1.0f / 4.0f;
+
+    for (int width = 0; width < SmallBoardWidth; width++)
+    {
+        for (int height = 0; height < SmallBoardHeight; height++)
+        {
+            Rectangle cell = {startX + width * CellWidth - width, startY + height * CellHeight - height, CellWidth, CellHeight};
+            DrawRectangleRec(cell, LIGHTGRAY);
+            // Draw a border around each cell
+            DrawRectangleLinesEx(cell, 1.0f, DARKGRAY);
+        }
+        
+    }
+        
+
 }

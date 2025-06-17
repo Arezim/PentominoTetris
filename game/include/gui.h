@@ -3,7 +3,10 @@
 
 void DrawGUI();
 void DrawMainMenu();
-void DrawGame();
 void DrawGameOver();
+void DrawGame();
+
+void DrawBoard();
+void DrawSmallBoard();
 
 #endif // GUI_H
