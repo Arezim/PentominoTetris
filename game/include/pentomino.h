@@ -42,14 +42,14 @@ static const std::map<PentominoType, std::vector<std::vector<PentominoType>>> pe
         {PentominoType::I, PentominoType::I, PentominoType::I, PentominoType::I, PentominoType::I}
     }},
     {PentominoType::X, {
-        {PentominoType::X, PentominoType::NONE, PentominoType::X},
         {PentominoType::NONE, PentominoType::X, PentominoType::NONE},
-        {PentominoType::X, PentominoType::NONE, PentominoType::X}
+        {PentominoType::X, PentominoType::X, PentominoType::X},
+        {PentominoType::NONE, PentominoType::X, PentominoType::NONE}
     }},
     {PentominoType::Z, {
-        {PentominoType::Z, PentominoType::Z, PentominoType::Z},
+        {PentominoType::NONE, PentominoType::Z, PentominoType::Z},
         {PentominoType::NONE, PentominoType::Z, PentominoType::NONE},
-        {PentominoType::Z, PentominoType::Z, PentominoType::Z}
+        {PentominoType::Z, PentominoType::Z, PentominoType::NONE}
     }},
     {PentominoType::V, {
         {PentominoType::V, PentominoType::V, PentominoType::V},
